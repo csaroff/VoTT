@@ -1,6 +1,15 @@
 {
-    "modelPath": {
-        "ui:widget": "localFolderPicker"
+    "tfjsModelPath": {
+        "ui:widget": "localFileSystemPicker",
+        "ui:options": {
+            "isFilePicker": false
+        }
+    },
+    "onnxModelPath": {
+        "ui:widget": "localFileSystemPicker",
+        "ui:options": {
+            "isFilePicker": true
+        }
     },
     "predictTag": {
         "ui:widget": "checkbox"

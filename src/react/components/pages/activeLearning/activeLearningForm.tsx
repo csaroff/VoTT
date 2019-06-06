@@ -3,7 +3,7 @@ import Form, { ISubmitEvent, IChangeEvent, Widget } from "react-jsonschema-form"
 import { IActiveLearningSettings, ModelPathType } from "../../../../models/applicationState";
 import { strings, addLocValues } from "../../../../common/strings";
 import CustomFieldTemplate from "../../common/customField/customFieldTemplate";
-import LocalFolderPicker from "../../common/localFolderPicker/localFolderPicker";
+import LocalFileSystemPicker from "../../common/localFileSystemPicker/localFileSystemPicker";
 import { CustomWidget } from "../../common/customField/customField";
 import Checkbox from "rc-checkbox";
 
@@ -37,7 +37,7 @@ export class ActiveLearningForm extends React.Component<IActiveLearningFormProps
     };
 
     private widgets = {
-        localFolderPicker: (LocalFolderPicker as any) as Widget,
+        localFileSystemPicker: (LocalFileSystemPicker as any) as Widget,
         checkbox: CustomWidget(Checkbox, (props) => ({
             checked: props.value,
             onChange: (value) => props.onChange(value.target.checked),

@@ -211,6 +211,7 @@ export const spanish: IAppStrings = {
                 title: "Sistema de Archivos Local",
                 folderPath: "Ruta de la carpeta",
                 selectFolder: "Seleccionar la carpeta",
+                selectFile: "Seleccione Archivo",
                 chooseFolder: "Elijir la carpeta",
             },
         },
@@ -403,7 +404,8 @@ export const spanish: IAppStrings = {
                     description: "Fuente desde la cual cargar el modelo",
                     options: {
                         preTrained: "SSD de coco pre-entrenado",
-                        customFilePath: "Personalizado (ruta de archivo)",
+                        customTFJSPath: "Modelo tfjs personalizado (carpeta)",
+                        customONNXPath: "Modelo onnx personalizado (archivo)",
                         customWebUrl: "Personalizado (URL)",
                     },
                 },
@@ -415,6 +417,14 @@ export const spanish: IAppStrings = {
                 modelPath: {
                     title: "Ruta de modelo",
                     description: "Seleccione un modelo de su sistema de archivos local",
+                },
+                tfjsModelPath: {
+                    title: "Ruta del modelo TensorflowJS",
+                    description: "Seleccione un directorio modelo tfjs de su sistema de archivos local"
+                },
+                onnxModelPath: {
+                    title: "Ruta del modelo ONNXJS",
+                    description: "Seleccione un archivo de modelo onnxjs de su sistema de archivos local"
                 },
                 modelUrl: {
                     title: "URL del modelo",

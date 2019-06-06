@@ -1,5 +1,8 @@
 {
     "folderPath": {
-        "ui:widget": "localFolderPicker"
+        "ui:widget": "localFileSystemPicker",
+        "ui:options": {
+            "isFilePicker": false
+        }
     }
 }

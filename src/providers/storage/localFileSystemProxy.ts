@@ -38,6 +38,13 @@ export class LocalFileSystemProxy implements IStorageProvider, IAssetProvider {
     }
 
     /**
+     * Select container for use in provider
+     */
+    public selectFile(): Promise<string> {
+        return IpcRendererProxy.send(`${PROXY_NAME}:selectFile`);
+    }
+
+    /**
      * Read text from file
      * @param fileName - Name of file from which to read text
      */

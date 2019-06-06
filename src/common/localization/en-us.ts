@@ -209,6 +209,7 @@ export const english: IAppStrings = {
                 title: "Local File System",
                 folderPath: "Folder Path",
                 selectFolder: "Select Folder",
+                selectFile: "Select File",
                 chooseFolder: "Choose Folder",
             },
         },
@@ -400,7 +401,8 @@ export const english: IAppStrings = {
                     description: "Where to load the training model from",
                     options: {
                         preTrained: "Pre-trained Coco SSD",
-                        customFilePath: "Custom (File path)",
+                        customTFJSPath: "Custom tfjs model (folder)",
+                        customONNXPath: "Custom onnx model (file)",
                         customWebUrl: "Custom (Url)",
                     },
                 },
@@ -411,6 +413,14 @@ export const english: IAppStrings = {
                 modelPath: {
                     title: "Model path",
                     description: "Select a model from your local file system",
+                },
+                tfjsModelPath: {
+                    title: "TensorflowJS Model Path",
+                    description: "Select a tfjs model directory from your local file system",
+                },
+                onnxModelPath: {
+                    title: "ONNX Model Path",
+                    description: "Select an onnx model file from your local file system",
                 },
                 modelUrl: {
                     title: "Model URL",

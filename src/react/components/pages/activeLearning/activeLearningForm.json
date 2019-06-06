@@ -7,13 +7,15 @@
             "description": "${strings.activeLearning.form.properties.modelPathType.description}",
             "enum": [
                 "coco",
-                "file",
+                "tfjs-folder",
+                "onnx-file",
                 "url"
             ],
             "default": "coco",
             "enumNames": [
                 "${strings.activeLearning.form.properties.modelPathType.options.preTrained}",
-                "${strings.activeLearning.form.properties.modelPathType.options.customFilePath}",
+                "${strings.activeLearning.form.properties.modelPathType.options.customTFJSPath}",
+                "${strings.activeLearning.form.properties.modelPathType.options.customONNXPath}",
                 "${strings.activeLearning.form.properties.modelPathType.options.customWebUrl}"
             ]
         },
@@ -42,15 +44,32 @@
                 },
                 {
                     "required": [
-                        "modelPath"
+                        "tfjsModelPath"
                     ],
                     "properties": {
                         "modelPathType": {
                             "enum": [
-                                "file"
+                                "tfjs-folder"
                             ]
                         },
-                        "modelPath": {
+                        "tfjsModelPath": {
+                            "title": "${strings.activeLearning.form.properties.modelPath.title}",
+                            "description": "${strings.activeLearning.form.properties.modelPath.description}",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "required": [
+                        "onnxModelPath"
+                    ],
+                    "properties": {
+                        "modelPathType": {
+                            "enum": [
+                                "onnx-file"
+                            ]
+                        },
+                        "onnxModelPath": {
                             "title": "${strings.activeLearning.form.properties.modelPath.title}",
                             "description": "${strings.activeLearning.form.properties.modelPath.description}",
                             "type": "string"

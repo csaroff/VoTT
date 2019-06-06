@@ -10,7 +10,7 @@ import CustomFieldTemplate from "../../common/customField/customFieldTemplate";
 import { ISecurityTokenPickerProps, SecurityTokenPicker } from "../../common/securityTokenPicker/securityTokenPicker";
 import "vott-react/dist/css/tagsInput.css";
 import { IConnectionProviderPickerProps } from "../../common/connectionProviderPicker/connectionProviderPicker";
-import LocalFolderPicker from "../../common/localFolderPicker/localFolderPicker";
+import LocalFileSystemPicker from "../../common/localFileSystemPicker/localFileSystemPicker";
 
 // tslint:disable-next-line:no-var-requires
 const formSchema = addLocValues(require("./projectForm.json"));
@@ -53,7 +53,7 @@ export interface IProjectFormState {
  */
 export default class ProjectForm extends React.Component<IProjectFormProps, IProjectFormState> {
     private widgets = {
-        localFolderPicker: (LocalFolderPicker as any) as Widget,
+        localFileSystemPicker: (LocalFileSystemPicker as any) as Widget,
     };
 
     private tagsInput: React.RefObject<TagsInput>;

@@ -1,7 +1,7 @@
 import React from "react";
 import Form, { Widget, IChangeEvent, FormValidation } from "react-jsonschema-form";
 import { IConnection } from "../../../../models/applicationState";
-import LocalFolderPicker from "../../common/localFolderPicker/localFolderPicker";
+import LocalFileSystemPicker from "../../common/localFileSystemPicker/localFileSystemPicker";
 import { strings, addLocValues } from "../../../../common/strings";
 import CustomFieldTemplate from "../../common/customField/customFieldTemplate";
 import ConnectionProviderPicker from "../../common/connectionProviderPicker/connectionProviderPicker";
@@ -48,7 +48,7 @@ export interface IConnectionFormState {
  */
 export default class ConnectionForm extends React.Component<IConnectionFormProps, IConnectionFormState> {
     private widgets = {
-        localFolderPicker: (LocalFolderPicker as any) as Widget,
+        localFileSystemPicker: (LocalFileSystemPicker as any) as Widget,
         connectionProviderPicker: (ConnectionProviderPicker as any) as Widget,
         protectedInput: (ProtectedInput as any) as Widget,
         checkbox: CustomWidget(Checkbox, (props) => ({

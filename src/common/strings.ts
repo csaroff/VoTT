@@ -208,6 +208,7 @@ export interface IAppStrings {
                 title: string;
                 folderPath: string;
                 selectFolder: string;
+                selectFile: string;
                 chooseFolder: string;
             },
         }
@@ -397,7 +398,8 @@ export interface IAppStrings {
                     description: string,
                     options: {
                         preTrained: string,
-                        customFilePath: string,
+                        customTFJSPath: string,
+                        customONNXPath: string,
                         customWebUrl: string,
                     },
                 },
@@ -410,6 +412,14 @@ export interface IAppStrings {
                     description: string,
                 },
                 modelPath: {
+                    title: string,
+                    description: string,
+                },
+                onnxModelPath: {
+                    title: string,
+                    description: string,
+                },
+                tfjsModelPath: {
                     title: string,
                     description: string,
                 },

@@ -8,9 +8,12 @@ import { strings } from "../../../../common/strings";
  * @member value - Initial value for picker
  * @member onChange - Function to call on change to selected value
  */
-interface ILocalFolderPickerProps {
+interface ILocalFileSystemPickerProps {
     id?: string;
     value: string;
+    options: {
+        isFilePicker: boolean;
+    };
     onChange: (value) => void;
 }
 
@@ -18,16 +21,23 @@ interface ILocalFolderPickerProps {
  * State for Local Folder Picker
  * @member value - Selected folder
  */
-interface ILocalFolderPickerState {
+interface ILocalFileSystemPickerState {
     value: string;
 }
 
 /**
- * @name - Local Folder Picker
- * @description - Select folder from local file system
+ * @name - Local File System Picker
+ * @description - Select file or folder from local file system
  */
-export default class LocalFolderPicker extends React.Component<ILocalFolderPickerProps, ILocalFolderPickerState> {
+export default class LocalFileSystemPicker extends React.Component<ILocalFileSystemPickerProps, ILocalFileSystemPickerState> {
     private localFileSystem: LocalFileSystemProxy;
+    private fileSystemSelector: Function;
+    private buttonLabel: string;
+    static defaultProps = {
+        options: {
+            isFilePicker: false
+        }
+    }
 
     constructor(props, context) {
         super(props, context);
@@ -37,7 +47,15 @@ export default class LocalFolderPicker extends React.Component<ILocalFolderPicke
         };
 
         this.localFileSystem = new LocalFileSystemProxy();
-        this.selectLocalFolder = this.selectLocalFolder.bind(this);
+        if (this.props.options.isFilePicker) {
+            this.fileSystemSelector = this.localFileSystem.selectFile;
+            this.buttonLabel = strings.connections.providers.local.selectFile;
+        }
+        else {
+            this.fileSystemSelector = this.localFileSystem.selectContainer;
+            this.buttonLabel = strings.connections.providers.local.selectFolder;
+        }
+        this.selectFromFileSystem = this.selectFromFileSystem.bind(this);
     }
 
     public render() {
@@ -50,7 +68,7 @@ export default class LocalFolderPicker extends React.Component<ILocalFolderPicke
                 <div className="input-group-append">
                     <button className="btn btn-primary"
                         type="button"
-                        onClick={this.selectLocalFolder}>{strings.connections.providers.local.selectFolder}
+                        onClick={this.selectFromFileSystem}>{this.buttonLabel}
                     </button>
                 </div>
             </div>
@@ -65,8 +83,8 @@ export default class LocalFolderPicker extends React.Component<ILocalFolderPicke
         }
     }
 
-    private selectLocalFolder = async () => {
-        const filePath = await this.localFileSystem.selectContainer();
+    private selectFromFileSystem = async () => {
+        const filePath = await this.fileSystemSelector();
         if (filePath) {
             this.setState({
                 value: filePath,
