@@ -4,6 +4,8 @@ import {
 } from "electron";
 import { IpcMainProxy } from "./common/ipcMainProxy";
 import LocalFileSystem from "./providers/storage/localFileSystem";
+import { Tensor, InferenceSession } from "onnxjs-node";
+const inferenceSession = new InferenceSession();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

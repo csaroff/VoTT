@@ -19,11 +19,21 @@ module.exports = {
                     }
                 }],
                 exclude: /node_modules/
+            }, {
+                test: /\.node?$/,
+                use: [{
+                    loader: 'node-loader',
+                    options: {
+                        compilerOptions: {
+                            noEmit: false
+                        }
+                    }
+                }],
             }
         ]
     },
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: [".ts", ".js", ".node"]
     },
     output: {
         filename: "main.js",
