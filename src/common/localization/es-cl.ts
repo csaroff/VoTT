@@ -406,6 +406,7 @@ export const spanish: IAppStrings = {
                         preTrained: "SSD de coco pre-entrenado",
                         customTFJSPath: "Modelo tfjs personalizado (carpeta)",
                         customONNXPath: "Modelo onnx personalizado (archivo)",
+                        inferenceUrl: "Object detection api",
                         customWebUrl: "Personalizado (URL)",
                     },
                 },
@@ -425,6 +426,10 @@ export const spanish: IAppStrings = {
                 onnxModelPath: {
                     title: "Ruta del modelo ONNXJS",
                     description: "Seleccione un archivo de modelo onnxjs de su sistema de archivos local"
+                },
+                inferenceUrl: {
+                    title: "Inference Url",
+                    description: "Url path to the object detection api"
                 },
                 modelUrl: {
                     title: "URL del modelo",

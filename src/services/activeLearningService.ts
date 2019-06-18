@@ -1,5 +1,5 @@
 import { IAssetMetadata, ModelPathType, IActiveLearningSettings, AssetState } from "../models/applicationState";
-import { ObjectDetection } from "../providers/activeLearning/objectDetection";
+import { ObjectDetection, TFJSObjectDetection, HTTPObjectDetection } from "../providers/activeLearning/";
 import Guard from "../common/guard";
 import { isElectron } from "../common/hostProcess";
 import { Env } from "../common/environment";
@@ -9,8 +9,13 @@ export class ActiveLearningService {
     private modelLoaded: boolean = false;
 
     constructor(private settings: IActiveLearningSettings) {
+        console.log('ActiveLearning.constructor');
         Guard.null(settings);
-        this.objectDetection = new ObjectDetection();
+        console.log('IActiveLearningSettings', settings);
+        if (settings.modelPathType === ModelPathType.Tfjs) {
+            this.objectDetection = new TFJSObjectDetection()
+        }
+        this.objectDetection = new HTTPObjectDetection();
     }
 
     public isModelLoaded() {
@@ -86,14 +91,23 @@ export class ActiveLearningService {
             } else {
                 modelPath = "https://vott.blob.core.windows.net/coco-ssd-model";
             }
-        } else if (this.settings.modelPathType === ModelPathType.File) {
+        } else if (this.settings.modelPathType === ModelPathType.Tfjs) {
             if (isElectron()) {
-                modelPath = this.settings.modelPath;
+                modelPath = this.settings.tfjsModelPath;
+            }
+        } else if (this.settings.modelPathType === ModelPathType.Onnx) {
+            if(isElectron()) {
+                modelPath = this.settings.onnxModelPath;
+            }
+        } else if (this.settings.modelPathType === ModelPathType.Inference) {
+            if(isElectron()) {
+                modelPath = this.settings.inferenceUrl;
             }
         } else {
             modelPath = this.settings.modelUrl;
         }
 
+        console.log('this.objectDetection', this.objectDetection);
         await this.objectDetection.load(modelPath);
     }
 

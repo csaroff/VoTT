@@ -11,6 +11,9 @@
             "isFilePicker": true
         }
     },
+    "inferenceUrl": {
+        "ui:widget": "textarea"
+    },
     "predictTag": {
         "ui:widget": "checkbox"
     },

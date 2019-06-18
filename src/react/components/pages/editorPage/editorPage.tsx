@@ -577,6 +577,7 @@ export default class EditorPage extends React.Component<IEditorPageProps, IEdito
                 toastId = toast.info(strings.activeLearning.messages.loadingModel, { autoClose: false });
                 await this.activeLearningService.ensureModelLoaded();
             } catch (e) {
+                console.error(e)
                 toast.error(strings.activeLearning.messages.errorLoadModel);
                 return;
             } finally {

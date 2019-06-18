@@ -400,6 +400,7 @@ export interface IAppStrings {
                         preTrained: string,
                         customTFJSPath: string,
                         customONNXPath: string,
+                        inferenceUrl: string,
                         customWebUrl: string,
                     },
                 },
@@ -423,6 +424,10 @@ export interface IAppStrings {
                     title: string,
                     description: string,
                 },
+                inferenceUrl: {
+                    title: string,
+                    description: string,
+                }
                 modelUrl: {
                     title: string,
                     description: string,

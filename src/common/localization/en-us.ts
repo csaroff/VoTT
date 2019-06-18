@@ -401,6 +401,7 @@ export const english: IAppStrings = {
                     description: "Where to load the training model from",
                     options: {
                         preTrained: "Pre-trained Coco SSD",
+                        inferenceUrl: "Inference api url",
                         customTFJSPath: "Custom tfjs model (folder)",
                         customONNXPath: "Custom onnx model (file)",
                         customWebUrl: "Custom (Url)",
@@ -421,6 +422,10 @@ export const english: IAppStrings = {
                 onnxModelPath: {
                     title: "ONNX Model Path",
                     description: "Select an onnx model file from your local file system",
+                },
+                inferenceUrl: {
+                    title: "Inference Url",
+                    description: "Url path to the object detection api"
                 },
                 modelUrl: {
                     title: "Model URL",

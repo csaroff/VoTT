@@ -1,7 +1,8 @@
 import * as tf from "@tensorflow/tfjs";
 jest.mock("../storage/localFileSystemProxy");
 import { LocalFileSystemProxy } from "../storage/localFileSystemProxy";
-import { ObjectDetection, DetectedObject } from "./objectDetection";
+import { DetectedObject } from "./objectDetection";
+import { TFJSObjectDetection } from "./tfjsObjectDetection";
 import { strings } from "../../common/strings";
 // tslint:disable-next-line:no-var-requires
 const modelJson = require("../../../cocoSSDModel/model.json");
@@ -19,7 +20,7 @@ describe("Load an Object Detection model", () => {
             return Promise.resolve([]);
         });
 
-        const model = new ObjectDetection();
+        const model = new TFJSObjectDetection();
 
         try {
             await model.load("path");
@@ -56,7 +57,7 @@ describe("Load an Object Detection model", () => {
             }
         });
 
-        const model = new ObjectDetection();
+        const model = new TFJSObjectDetection();
 
         expect(model.load("http://url")).rejects.not.toBeNull();
         expect(window.fetch).toBeCalledTimes(1);
@@ -83,8 +84,8 @@ describe("Test Detection on Fake Model", () => {
         });
     });
 
-    it("ObjectDetection detect method should generate output", async () => {
-        const model = new ObjectDetection();
+    it("TFJSObjectDetection detect method should generate output", async () => {
+        const model = new TFJSObjectDetection();
         await model.load("path");
 
         const x = tf.zeros([227, 227, 3]) as tf.Tensor3D;
@@ -108,7 +109,7 @@ describe("Test predictImage on Fake Model", () => {
     });
 
     it("predictImage on a fake image", async () => {
-        const model = new ObjectDetection();
+        const model = new TFJSObjectDetection();
         await model.load("path");
 
         const x = tf.zeros([227, 227, 3]) as tf.Tensor3D;

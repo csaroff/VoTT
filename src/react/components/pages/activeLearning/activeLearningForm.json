@@ -9,6 +9,7 @@
                 "coco",
                 "tfjs-folder",
                 "onnx-file",
+                "inference-url",
                 "url"
             ],
             "default": "coco",
@@ -16,6 +17,7 @@
                 "${strings.activeLearning.form.properties.modelPathType.options.preTrained}",
                 "${strings.activeLearning.form.properties.modelPathType.options.customTFJSPath}",
                 "${strings.activeLearning.form.properties.modelPathType.options.customONNXPath}",
+                "${strings.activeLearning.form.properties.modelPathType.options.inferenceUrl}",
                 "${strings.activeLearning.form.properties.modelPathType.options.customWebUrl}"
             ]
         },
@@ -70,6 +72,23 @@
                             ]
                         },
                         "onnxModelPath": {
+                            "title": "${strings.activeLearning.form.properties.modelPath.title}",
+                            "description": "${strings.activeLearning.form.properties.modelPath.description}",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "required": [
+                        "inferenceUrl"
+                    ],
+                    "properties": {
+                        "modelPathType": {
+                            "enum": [
+                                "inference-url"
+                            ]
+                        },
+                        "inferenceUrl": {
                             "title": "${strings.activeLearning.form.properties.modelPath.title}",
                             "description": "${strings.activeLearning.form.properties.modelPath.description}",
                             "type": "string"
