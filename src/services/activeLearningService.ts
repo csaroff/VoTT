@@ -1,5 +1,5 @@
 import { IAssetMetadata, ModelPathType, IActiveLearningSettings, AssetState } from "../models/applicationState";
-import { ObjectDetection } from "../providers/activeLearning/objectDetection";
+import { ObjectDetection, TFJSObjectDetection, OnnxObjectDetection } from "../providers/activeLearning/";
 import Guard from "../common/guard";
 import { isElectron } from "../common/hostProcess";
 import { Env } from "../common/environment";
@@ -10,7 +10,11 @@ export class ActiveLearningService {
 
     constructor(private settings: IActiveLearningSettings) {
         Guard.null(settings);
-        this.objectDetection = new ObjectDetection();
+        console.log('IActiveLearningSettings', settings);
+        if (settings.modelPathType === ModelPathType.Onnx)
+            this.objectDetection = new OnnxObjectDetection()
+        else
+            this.objectDetection = new TFJSObjectDetection();
     }
 
     public isModelLoaded() {
@@ -74,6 +78,8 @@ export class ActiveLearningService {
 
     private async loadModel() {
         let modelPath = "";
+        console.log('this.settings.modelPathType', this.settings.modelPathType);
+        console.log('ModelPathType.Coco', ModelPathType.Coco);
         if (this.settings.modelPathType === ModelPathType.Coco) {
             if (isElectron()) {
                 const appPath = this.getAppPath();
@@ -86,14 +92,23 @@ export class ActiveLearningService {
             } else {
                 modelPath = "https://vott.blob.core.windows.net/coco-ssd-model";
             }
-        } else if (this.settings.modelPathType === ModelPathType.File) {
+        } else if (this.settings.modelPathType === ModelPathType.Tfjs) {
+            console.log('line 90')
             if (isElectron()) {
-                modelPath = this.settings.modelPath;
+                console.log('Line 94')
+                console.log('this.settings', this.settings)
+                modelPath = this.settings.tfjsModelPath;
+            }
+        } else if (this.settings.modelPathType === ModelPathType.Onnx) {
+            if(isElectron()) {
+                modelPath = this.settings.onnxModelPath;
             }
         } else {
+            console.log('line 95')
             modelPath = this.settings.modelUrl;
         }
 
+        console.log('modelPath', modelPath)
         await this.objectDetection.load(modelPath);
     }
 

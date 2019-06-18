@@ -4,6 +4,8 @@ import {
 } from "electron";
 import { IpcMainProxy } from "./common/ipcMainProxy";
 import LocalFileSystem from "./providers/storage/localFileSystem";
+import LocalOnnxModel from "./providers/storage/localOnnxModel";
+// import { Tensor, InferenceSession } from "onnxjs-node";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -53,6 +55,11 @@ function createWindow() {
 
     const localFileSystem = new LocalFileSystem(mainWindow);
     ipcMainProxy.registerProxy("LocalFileSystem", localFileSystem);
+
+    // const localOnnxModel = new LocalOnnxModel(mainWindow);
+    // LocalOnnxModel.model = new InferenceSession();
+    // console.log('ipcMainProxy.registerProxy');
+    // ipcMainProxy.registerProxy("LocalOnnxModel", localOnnxModel);
 }
 
 function onReloadApp() {

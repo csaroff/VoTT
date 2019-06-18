@@ -12,7 +12,6 @@ describe("Local Folder Picker Component", () => {
         return mount(
             <LocalFileSystemPicker
                 value={value}
-                isFilePicker={false}
                 onChange={onChangeHandler} />,
         );
     }

@@ -210,7 +210,8 @@ export interface IProjectVideoSettings {
  */
 export enum ModelPathType {
     Coco = "coco",
-    File = "file",
+    Onnx = "onnx-file",
+    Tfjs = 'tfjs-folder',
     Url = "url",
 }
 
@@ -234,6 +235,8 @@ export interface IAdditionalPageSettings extends IAssetPreviewSettings {
 export interface IActiveLearningSettings {
     modelPathType: ModelPathType;
     modelPath?: string;
+    tfjsModelPath?: string;
+    onnxModelPath?: string;
     modelUrl?: string;
     autoDetect: boolean;
     predictTag: boolean;
